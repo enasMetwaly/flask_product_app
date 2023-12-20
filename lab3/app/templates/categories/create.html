@@ -1,0 +1,22 @@
+
+{% extends 'layouts/base.html' %}
+
+{% block title %} Students  {% endblock%}
+
+{% block body %}
+<div class="m-3">
+
+<h1>Add new Product</h1>
+<form method="POST" enctype="multipart/form-data">
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp">
+  </div>
+  <div class="mb-3">
+    <label for="image" class="form-label">Image</label>
+    <input type="file" name="image" class="form-control" id="image">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+{% endblock %}

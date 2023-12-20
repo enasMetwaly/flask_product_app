@@ -1,0 +1,30 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Products {% endblock %}
+
+{% block body %}
+<div class="m-5">
+    <div class="d-flex justify-content-between m-5">
+        <h1> All Products </h1>
+        <a class="nav-link" href="{{ url_for('categories.create') }}">add category</a>
+
+    </div>
+    <div class="row">
+        {% for product in products %}
+        <div class="col-sm-6 col-md-4 col-lg-3 m-4">
+            <div class="card" style="width: 18rem;">
+  <img src="{{ url_for('static', filename='/products/uploads/'+product.image)}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+
+                    <a class="btn btn-primary" href="{{ product.show_url }}"> Show</a>
+                    <a class="btn btn-primary" href="{{ product.update_url() }}"> Edit</a>
+
+                <a class="btn btn-danger" href="{{ product.delete_url() }}">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

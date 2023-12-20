@@ -1,0 +1,56 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Students  {% endblock%}
+
+{% block body %}
+<div class="m-3">
+
+<h1>Add new Product</h1>
+<form method="POST" enctype="multipart/form-data" ">
+>
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input type="text" name="name" class="form-control" id="name" aria-describedby="emailHelp">
+  </div>
+  <div class="mb-3">
+    <label for="image" class="form-label">Image</label>
+    <input type="file" name="image" class="form-control" id="image">
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <textarea name="description" class="form-control" id="description" rows="4"></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="price" class="form-label">Price</label>
+    <input type="number" name="price" step="0.01" class="form-control" id="price">
+  </div>
+      <div class="row">
+        {% for product in products %}
+        <div class="col-sm-6 col-md-4 col-lg-3 m-2">
+            <div class="card" style="width: 18rem;">
+                <img src="{{ product.get_image_url() }}" alt="{{ product.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <a class="btn btn-primary" href="{{ product.show_url }}"> Show</a>
+                    <a class="btn btn-primary" href="{{ product.delete_url }}"> Delete</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+<select name="category_id" class="form-select">
+    <option value="" disabled>Select a Category</option>
+    {% for category in categories %}
+    <option value="{{ category.id }}">{{ category.name }}</option>
+    {% endfor %}
+</select>
+
+
+  <div class="mb-3">
+    <label for="in_stock" class="form-label">In Stock</label>
+    <input type="checkbox" name="in_stock" class="form-check-input" id="in_stock">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+{% endblock %}

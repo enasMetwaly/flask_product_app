@@ -1,0 +1,29 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Categories {% endblock %}
+
+{% block body %}
+<div class="m-5">
+    <div class="d-flex justify-content-between m-5">
+        <h1> All categories </h1>
+    </div>
+    <div class="row">
+        {% for category in categories %}
+            <div class="col-sm-6 col-md-4 col-lg-3 m-2">
+                <div class="card" style="width: 18rem;">
+<img src="{{ url_for('static', filename='/categories/uploads/' ~ category.image) }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ category.name }}</h5>
+                        <h5 class="card-title">{{ category.created_on }}</h5>
+                        <h5 class="card-title">{{ category.updated_on }}</h5>
+
+
+                        <a class="btn btn-primary" href="{{ category.show_url }}"> Show</a>
+                        <a class="btn btn-primary" href="{{ category.delete_url() }}"> Delete</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

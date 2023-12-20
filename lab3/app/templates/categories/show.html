@@ -1,0 +1,27 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} products  {% endblock%}
+
+{% block body %}
+ <div class="d-flex justify-content-between" >
+    <h1> show catgory </h1>
+        <a class="nav-link" href="{{ url_for('categories.create') }}">add category</a>
+ </div>
+ <div class="d-flex justify-content-between m-5">
+   <div class="card position-relative" style="width: 18rem;">
+  <img src="{{ url_for('static', filename='/products/uploads/'+category.image)}}" class="card-img-top" alt="...">
+       <div class="card-body   ">
+           <h5 class="card-title">{{category.name}}</h5>
+           <p class="card-title">{{ category.created_on }}</p>
+           <p class="card-title">{{ category.updated_on }}</p>
+=
+  </div>
+</div>
+      <div class="d-flex flex-column justify-content-between ">
+
+         <a href="{{url_for('categories.index')}}" class="btn btn-primary" style="height:50px">Back to all categories</a>
+          <a href="{{url_for('products.index')}}" class="btn btn-primary" style="height:50px">Back to all products </a>
+
+      </div>
+ </div>
+{% endblock %}

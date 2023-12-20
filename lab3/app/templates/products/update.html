@@ -1,0 +1,40 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Students  {% endblock%}
+
+{% block body %}
+<div class="m-4">
+<h1>Update Product</h1>
+<form method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" name="name" class="form-control" id="name" value="{{ product.name }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea name="description" class="form-control" id="description" required>{{ product.description }}</textarea>
+    </div>
+    <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input type="number" name="price" class="form-control" id="price" step="0.01" value="{{ product.price }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-check-label">In Stock</label>
+        <input type="checkbox" name="in_stock" class="form-check-input" {{ "checked" if product.in_stock else "" }}>
+    </div>
+    <div class="mb-3">
+        <label for="image" class="form-label">Image</label>
+        <input type="file" name="image" class="form-control-file" id="image">
+    </div>
+    <div class="mb-3">
+        <label for="category_id" class="form-label">Category</label>
+        <select name="category_id" class="form-select" id="category_id">
+            {% for category in categories %}
+                <option value="{{ category.id }}" {{ "selected" if category.id == product.cat_id else "" }}>{{ category.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <input type="submit" value="Update" class="btn btn-primary">
+</form>
+</div>
+{% endblock %}
